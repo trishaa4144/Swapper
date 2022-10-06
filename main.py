@@ -4,6 +4,7 @@ import datetime
 import asyncio
 from replit import db
 from discord.ext import tasks
+from server import keep_alive
 
 intent = discord.Intents.default()
 intent.members = True
@@ -134,5 +135,5 @@ def gen_task_list(server_id):
 async def before_check_reminder():
   print("Starting job")
 
-
+keep_alive()
 client.run(os.environ['TOKEN'])
