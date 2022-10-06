@@ -1,4 +1,19 @@
 [[package]]
+name = "aiocron"
+version = "1.8"
+description = "Crontabs for asyncio"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+croniter = "*"
+tzlocal = "*"
+
+[package.extras]
+test = ["coverage"]
+
+[[package]]
 name = "aiohttp"
 version = "3.8.3"
 description = "Async http client/server framework (asyncio)"
@@ -52,6 +67,17 @@ tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)"
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "mypy (>=0.900,!=0.940)", "pytest-mypy-plugins", "cloudpickle"]
 
 [[package]]
+name = "backports.zoneinfo"
+version = "0.2.1"
+description = "Backport of the standard library zoneinfo module"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+tzdata = ["tzdata"]
+
+[[package]]
 name = "certifi"
 version = "2022.9.24"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -88,6 +114,17 @@ description = "Cross-platform colored terminal text."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "croniter"
+version = "1.3.7"
+description = "croniter provides iteration for datetime object with cron like format"
+category = "main"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[package.dependencies]
+python-dateutil = "*"
 
 [[package]]
 name = "debugpy"
@@ -292,6 +329,17 @@ python-versions = ">=3.6.8"
 diagrams = ["railroad-diagrams", "jinja2"]
 
 [[package]]
+name = "python-dateutil"
+version = "2.8.2"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
 name = "python-lsp-jsonrpc"
 version = "1.0.0"
 description = "JSON RPC 2.0 server library"
@@ -324,6 +372,18 @@ gen_docs = ["pytoolconfig", "sphinx-rtd-theme (>=1.0.0)", "sphinx-autodoc-typehi
 doc = ["sphinx (>=4.5.0)", "tabulate (>=0.8.9)"]
 
 [[package]]
+name = "pytz-deprecation-shim"
+version = "0.1.0.post0"
+description = "Shims to make deprecation of pytz easier"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7"
+
+[package.dependencies]
+"backports.zoneinfo" = {version = "*", markers = "python_version >= \"3.6\" and python_version < \"3.9\""}
+tzdata = {version = "*", markers = "python_version >= \"3.6\""}
+
+[[package]]
 name = "replit"
 version = "3.2.4"
 description = "A library for interacting with features of repl.it"
@@ -340,7 +400,7 @@ Werkzeug = ">=2.0.0,<3.0.0"
 
 [[package]]
 name = "replit-python-lsp-server"
-version = "1.15.8"
+version = "1.15.9"
 description = "Python Language Server for the Language Server Protocol"
 category = "dev"
 optional = false
@@ -405,6 +465,22 @@ doc = ["sphinx-rtd-theme (>=1.0.0)", "sphinx-autodoc-typehints (>=1.18.1)", "sph
 dev = ["build (>=0.7.0)", "pytest-timeout (>=2.1.0)", "pytest (>=7.0.1)"]
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "timedelta"
+version = "2020.12.3"
+description = "datetime.timedelta replacement"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -427,6 +503,31 @@ description = "Backported and Experimental Type Hints for Python 3.5+"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "tzdata"
+version = "2022.4"
+description = "Provider of IANA time zone data"
+category = "main"
+optional = false
+python-versions = ">=2"
+
+[[package]]
+name = "tzlocal"
+version = "4.2"
+description = "tzinfo object for the local timezone"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+"backports.zoneinfo" = {version = "*", markers = "python_version < \"3.9\""}
+pytz-deprecation-shim = "*"
+tzdata = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+devenv = ["black", "pyroma", "pytest-cov", "zest.releaser"]
+test = ["pytest-mock (>=3.3)", "pytest (>=4.3)"]
 
 [[package]]
 name = "ujson"
@@ -506,17 +607,20 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "0d9803e6df7f783b664f01987fe80cf2bd0183400993184a6db70827a0da7d5b"
+content-hash = "2c6c7288ae95df738a06e13aed9ab401be2318b0d56a7c437adefb7f40616fb6"
 
 [metadata.files]
+aiocron = []
 aiohttp = []
 aiosignal = []
 async-timeout = []
 attrs = []
+"backports.zoneinfo" = []
 certifi = []
 charset-normalizer = []
 click = []
 colorama = []
+croniter = []
 debugpy = []
 discord = []
 "discord.py" = []
@@ -535,15 +639,21 @@ parso = []
 pluggy = []
 pyflakes = []
 pyparsing = []
+python-dateutil = []
 python-lsp-jsonrpc = []
 pytoolconfig = []
+pytz-deprecation-shim = []
 replit = []
 replit-python-lsp-server = []
 requests = []
 rope = []
+six = []
+timedelta = []
 toml = []
 tomli = []
 typing-extensions = []
+tzdata = []
+tzlocal = []
 ujson = []
 urllib3 = []
 werkzeug = []
