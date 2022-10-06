@@ -26,6 +26,9 @@ async def on_message(message):
   if message.author == client.user:
     return
 
+  if message.content.startswith('$help'):
+    await message.channel.send('*$help*: for help\n*$c*: to create a task\n*$list*: to see tasks for this server\n')
+
   if message.content.startswith('$c'):
     channel = message.channel
 
