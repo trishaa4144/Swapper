@@ -11,8 +11,6 @@ intent.message_content = True
 
 client = discord.Client(intents=intent)
 
-# db.clear()
-
 
 @client.event
 async def on_ready():
@@ -61,7 +59,7 @@ async def on_message(message):
     msg = await client.wait_for('message')
 
     try:
-      updated_time = datetime.datetime.now() + datetime.timedelta(seconds=int(msg.content))
+      updated_time = datetime.datetime.now() + datetime.timedelta(days=int(msg.content))
       db[server_id][len(db[server_id]) - 1]["endtime"] = updated_time.isoformat()
       db[server_id][len(db[server_id]) - 1]["timechange"] = int(msg.content)
     except:
@@ -95,26 +93,22 @@ async def on_message(message):
     await message.channel.send(gen_task_list(server_id))
 
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=60)
 async def check_reminder():
   print("Update")
   keys = db.keys()
   for key in keys:
     tasks = db[key]
     for task in tasks:
-      print("TASK " + task['task'])
-      print(datetime.datetime.fromisoformat(task['endtime']))
-      print(datetime.datetime.now())
       if (datetime.datetime.fromisoformat(task['endtime']) <= datetime.datetime.now()):
-        print ("IT IS TIME")
         channel = client.get_channel(int(task['channel_id']))
         await channel.send(
           f"The task *{task['task']}* has been swapped to {task['members'][0]}"
         )
         task['members'].append(task['members'][0])
-        task['members'].remove(1)
+        task['members'].remove(0)
 
-        newtime = datetime.datetime.now() + datetime.timedelta(seconds=int(task['timechange']))
+        newtime = datetime.datetime.now() + datetime.timedelta(days=int(task['timechange']))
         task['endtime'] = newtime.isoformat()
 
 
