@@ -1,4 +1,5 @@
 venv
+.config
 .env
 .breakpoints 
 .replit
