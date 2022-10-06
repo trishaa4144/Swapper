@@ -107,7 +107,8 @@ async def check_reminder():
       print(datetime.datetime.now())
       if (datetime.datetime.fromisoformat(task['endtime']) <= datetime.datetime.now()):
         print ("IT IS TIME")
-        await client.channels.cache.get(task['channel_id']).send(
+        channel = client.get_channel(int(task['channel_id']))
+        await channel.send(
           f"The task *{task['task']}* has been swapped to {task['members'][0]}"
         )
         task['members'].append(task['members'][0])
