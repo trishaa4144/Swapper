@@ -8,3 +8,5 @@ You can add it to your discord server [here](https://discord.com/api/oauth2/auth
 - `$help` for help
 - `$c` to start creating a task
 - `$list` to see all tasks for the server
+
+![logo](https://cdn.discordapp.com/avatars/1026684692507934730/96268f0a8334aebea1cd735e23a52962.webp?size=240)
